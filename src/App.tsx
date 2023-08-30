@@ -1,24 +1,15 @@
-import logo from './logo.svg'
-import './App.css'
+import { Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img alt="logo" className="App-logo" src={logo} />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          Learn React
-        </a>
-      </header>
+      <header>App page header</header>
+      <body>
+        <Suspense fallback={<div>loading</div>}>
+          <Outlet />
+        </Suspense>
+      </body>
     </div>
   )
 }
