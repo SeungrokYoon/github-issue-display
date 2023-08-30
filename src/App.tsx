@@ -5,11 +5,11 @@ function App() {
   return (
     <div className="App">
       <header>App page header</header>
-      <body>
+      <main>
         <Suspense fallback={<div>loading</div>}>
           <Outlet />
         </Suspense>
-      </body>
+      </main>
     </div>
   )
 }
