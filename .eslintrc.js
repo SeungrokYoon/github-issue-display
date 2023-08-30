@@ -44,6 +44,12 @@ module.exports = {
         reservedFirst: true,
       },
     ],
+    'react/function-component-definition': [
+      'error',
+      {
+        namedComponents: 'function-declaration',
+      },
+    ],
     'react-hooks/exhaustive-deps': 'warn',
     'no-multiple-empty-lines': 'error',
     'no-console': ['error', { allow: ['warn', 'error', 'info'] }], // console.log() 금지
