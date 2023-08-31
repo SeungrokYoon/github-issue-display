@@ -1,17 +1,18 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
 
-function App() {
+function PageLayout() {
   return (
-    <div className="App">
-      <header>App page header</header>
+    <div>
+      <header>header</header>
       <main>
         <Suspense fallback={<div>loading</div>}>
           <Outlet />
         </Suspense>
       </main>
+      <footer>footer</footer>
     </div>
   )
 }
 
-export default App
+export default PageLayout
