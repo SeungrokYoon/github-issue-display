@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import { useIntersect } from '../hooks/useIntersect'
 import { useNavigate } from 'react-router-dom'
 import { useIssueListContext } from '../store/IssueListContext'
+import { dateStringToKoreanString } from '../utils/dateConverter'
 
 function IssueListPage() {
   const { getIssueList } = useIssueListContext()
@@ -28,7 +29,7 @@ function IssueListPage() {
               <span>제목{v.title}</span>
               <span>작성자: {v.user?.login}</span>
               <span>댓글: {v.comments}</span>
-              <span>생성일: {v.created_at}</span>
+              <span>작성일: {dateStringToKoreanString(v.created_at)}</span>
             </IssueItem>
           ))}
           {loading && <>loading</>}
