@@ -4,6 +4,11 @@ import styled from 'styled-components'
 import { useIntersect } from '../hooks/useIntersect'
 import { useNavigate } from 'react-router-dom'
 import { useIssueListContext } from '../store/IssueListContext'
+import { dateStringToKoreanString } from '../utils/dateConverter'
+import { NumberTitleWrapper, Comments, StyledIssueItem } from './styles'
+import ImageBanner from '../components/ImageBanner'
+import { advertisement } from '../constants/advertisement'
+import IssueIcon from '../components/IssueIcon'
 
 function IssueListPage() {
   const { getIssueList } = useIssueListContext()
@@ -17,19 +22,44 @@ function IssueListPage() {
   )
   const navigate = useNavigate()
 
+  const isAdPosition = (index: number) => (index + 1) % 4 === 0
+
   return (
     <>
-      <h1>IssueListPage</h1>
       <section>
         <Suspense fallback={<div>Loading Issue List...</div>}>
-          {data.map((v) => (
-            <IssueItem key={v.number} onClick={() => navigate(`/issues/${v.number}`)}>
-              <span>이슈번호{v.number}</span>
-              <span>제목{v.title}</span>
-              <span>작성자: {v.user?.login}</span>
-              <span>댓글: {v.comments}</span>
-              <span>생성일: {v.created_at}</span>
-            </IssueItem>
+          {data.map((v, index) => (
+            <>
+              <StyledIssueItem key={v.number} onClick={() => navigate(`/issues/${v.number}`)}>
+                <LeftPart>
+                  <IconWrapper>
+                    <IssueIcon open={true} />
+                  </IconWrapper>
+                  <div>
+                    <NumberTitleWrapper>
+                      <span>#{v.number}</span>
+                      <span>
+                        <strong>{v.title}</strong>
+                      </span>
+                    </NumberTitleWrapper>
+                    <div>
+                      <span className="author">작성자: {v.user?.login}</span>
+                      <span>작성일: {dateStringToKoreanString(v.created_at)}</span>
+                    </div>
+                  </div>
+                </LeftPart>
+                <Comments>
+                  <span>코멘트: {v.comments}</span>
+                </Comments>
+              </StyledIssueItem>
+              {isAdPosition(index) && (
+                <ImageBanner
+                  alt={advertisement.banner.ALT}
+                  link={advertisement.banner.LINK}
+                  src={advertisement.banner.IMG}
+                />
+              )}
+            </>
           ))}
           {loading && <>loading</>}
         </Suspense>
@@ -45,8 +75,10 @@ const Target = styled.div`
   height: 1px;
 `
 
-const IssueItem = styled.div`
-  width: 100%;
-  margin: 10px;
-  background-color: aliceblue;
+const LeftPart = styled.div`
+  display: flex;
+  gap: 10px;
+`
+const IconWrapper = styled.div`
+  padding-top: 0.25rem;
 `

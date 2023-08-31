@@ -5,13 +5,19 @@ import reportWebVitals from './reportWebVitals'
 import { RouterProvider } from 'react-router-dom'
 import { router } from './pages/router'
 import { IssueListContextProvider } from './store/IssueListContext'
+import GlobalStyle from './styles/GlobalStyle'
+import { ThemeProvider } from 'styled-components'
+import { Theme } from './styles/DefaultTheme'
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 root.render(
   <React.StrictMode>
-    <IssueListContextProvider>
-      <RouterProvider router={router} />
-    </IssueListContextProvider>
+    <ThemeProvider theme={Theme}>
+      <GlobalStyle />
+      <IssueListContextProvider>
+        <RouterProvider router={router} />
+      </IssueListContextProvider>
+    </ThemeProvider>
   </React.StrictMode>
 )
 
