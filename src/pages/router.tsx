@@ -1,15 +1,15 @@
-import App from '../App'
+import PageLayout from './PageLayout'
 import { createBrowserRouter } from 'react-router-dom'
 import IssueListPage from './IssueListPage'
 import IssuePage from './IssuePage'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <App />,
+    element: <PageLayout />,
     children: [
       {
-        path: 'issues',
+        path: '/',
+        index: true,
         element: <IssueListPage />,
       },
       {
