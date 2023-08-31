@@ -14,6 +14,7 @@ function ImageBanner({
 }: ImageBannerProps) {
   return (
     <ImageBannerContainer
+      tabIndex={0}
       onClick={() => {
         window.open(link)
       }}

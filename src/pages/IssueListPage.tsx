@@ -30,7 +30,11 @@ function IssueListPage() {
         <Suspense fallback={<div>Loading Issue List...</div>}>
           {data.map((v, index) => (
             <>
-              <StyledIssueItem key={v.number} onClick={() => navigate(`/issues/${v.number}`)}>
+              <StyledIssueItem
+                key={v.number}
+                tabIndex={0}
+                onClick={() => navigate(`/issues/${v.number}`)}
+              >
                 <LeftPart>
                   <IconWrapper>
                     <IssueIcon open={true} />
