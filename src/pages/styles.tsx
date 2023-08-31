@@ -9,6 +9,10 @@ const StyledIssueItem = styled.div`
   background-color: ${({ theme }) => theme.bgColor_gray};
   border: 1px solid ${({ theme }) => theme.border_default};
   border-radius: 0.5rem;
+  &:hover {
+    transform: translateY(-0.25rem);
+    transition: transform ease-in-out 0.5s;
+  }
   cursor: pointer;
 `
 
