@@ -4,11 +4,12 @@ const StyledIssueItem = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5rem;
-  padding: 0.25rem 0.5rem;
+  margin: 1rem;
+  padding: 0.5rem 1rem;
   background-color: ${({ theme }) => theme.bgColor_gray};
   border: 1px solid ${({ theme }) => theme.border_default};
   border-radius: 0.5rem;
+  cursor: pointer;
 `
 
 const NumberTitleWrapper = styled.div`
