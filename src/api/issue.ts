@@ -20,14 +20,6 @@ export type IssueContentResponseData =
 type IssueListQueryParam = Omit<IssueListQuery, 'owner' | 'repo'>
 
 const genIssueListQueryParam = (params: IssueListQueryParam) => {
-  console.info(params)
-  console.info(
-    '?' +
-      Object.keys(params)
-        .filter((key) => key !== 'owner' && key !== 'repo')
-        .map((key) => `${key}=${params[key as keyof IssueListQueryParam]}`)
-        .join('&')
-  )
   return (
     '?' +
     Object.keys(params)

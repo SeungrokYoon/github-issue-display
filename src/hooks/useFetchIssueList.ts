@@ -15,12 +15,10 @@ const useFetchIssueList = () => {
         repo: 'react',
         page: page,
       })
-      console.info(page)
       setIssueList((prev) => {
         const pureNewIssues = res.data
           .filter((issue) => !issue.pull_request)
           .filter((issue) => !prev.find((prevIssue) => prevIssue.number === issue.number))
-        console.info(pureNewIssues)
         return prev.concat(...pureNewIssues)
       })
       setPage(() => page + 1)
