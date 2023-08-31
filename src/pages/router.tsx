@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         element: <IssueListPage />,
       },
       {
-        path: 'issues/:id',
+        path: 'issues/:issueNumber',
         element: <IssuePage />,
       },
     ],
