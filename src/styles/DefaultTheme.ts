@@ -5,6 +5,8 @@ const colors = {
   canvas_main: '#0C1117',
   defalut_border: '#30363d',
   hover_default: 'rgb(22,27,34)',
+  issue_open: '#3fb950',
+  issue_closed: 'blue',
 }
 
 export const Theme = {
@@ -14,4 +16,5 @@ export const Theme = {
   bgColor_canvas_main: colors.canvas_main,
   border_default: colors.defalut_border,
   hover_default: colors.hover_default,
+  issue_open: colors.issue_open,
 }

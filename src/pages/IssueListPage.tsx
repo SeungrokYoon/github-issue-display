@@ -8,6 +8,7 @@ import { dateStringToKoreanString } from '../utils/dateConverter'
 import { NumberTitleWrapper, Comments, StyledIssueItem } from './styles'
 import ImageBanner from '../components/ImageBanner'
 import { advertisement } from '../constants/advertisement'
+import IssueIcon from '../components/IssueIcon'
 
 function IssueListPage() {
   const { getIssueList } = useIssueListContext()
@@ -30,18 +31,23 @@ function IssueListPage() {
           {data.map((v, index) => (
             <>
               <StyledIssueItem key={v.number} onClick={() => navigate(`/issues/${v.number}`)}>
-                <div>
-                  <NumberTitleWrapper>
-                    <span>#{v.number}</span>
-                    <span>
-                      <strong>{v.title}</strong>
-                    </span>
-                  </NumberTitleWrapper>
+                <LeftPart>
+                  <IconWrapper>
+                    <IssueIcon open={true} />
+                  </IconWrapper>
                   <div>
-                    <span className="author">작성자: {v.user?.login}</span>
-                    <span>작성일: {dateStringToKoreanString(v.created_at)}</span>
+                    <NumberTitleWrapper>
+                      <span>#{v.number}</span>
+                      <span>
+                        <strong>{v.title}</strong>
+                      </span>
+                    </NumberTitleWrapper>
+                    <div>
+                      <span className="author">작성자: {v.user?.login}</span>
+                      <span>작성일: {dateStringToKoreanString(v.created_at)}</span>
+                    </div>
                   </div>
-                </div>
+                </LeftPart>
                 <Comments>
                   <span>코멘트: {v.comments}</span>
                 </Comments>
@@ -67,4 +73,12 @@ export default IssueListPage
 
 const Target = styled.div`
   height: 1px;
+`
+
+const LeftPart = styled.div`
+  display: flex;
+  gap: 10px;
+`
+const IconWrapper = styled.div`
+  padding-top: 0.25rem;
 `
