@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import { Outlet } from 'react-router-dom'
-import Header from '../components/IssueList/Header'
+import Header from '../components/Header'
 import styled from 'styled-components'
 
 function PageLayout() {
