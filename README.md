@@ -51,6 +51,7 @@ npm start
 - `IssueListPage` (이슈 리스트가 광고와 함께 렌더링되는 페이지)
 
   - 이슈 목록을 `Github API`와 `Octokit` 을 활용하여 open 상태의 이슈 중 코멘트가 많은 순으로 정렬
+  - [API 설명](https://docs.github.com/en/free-pro-team@latest/rest/issues/issues?apiVersion=2022-11-28#list-repository-issues)에 따르면, Github REST API의 "issues"엔드포인트는 풀 리퀘스트와 일반 이슈를 함께 반환합니다. 때문에 응답 데이터에서 'pull_request'키를 기준으로 filter를 하여 풀리퀘스트를 제거하고 순수한 이슈들만 렌더링하도록 처리했습니다.[관련 PR](https://github.com/SeungrokYoon/github-issue-display/pull/12/files#diff-962987b07074286aeeb5930581b781bb6b4719a2bae7c69908d991a12c3650bc)
   - 다섯 번째 셀마다 광고 이미지 출력광고
   - 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)[PR](https://github.com/SeungrokYoon/github-issue-display/pull/14)
     ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/44c7003a-9411-4bdf-87d1-7d217f4f0e99)
@@ -65,6 +66,12 @@ npm start
 
 - 데이터 로드 시 로딩 스피너 출력
   ![Sep-01-2023 16-28-06](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/39a04b36-03e9-49d0-874d-b68df1790c2f)
+
+## 추가 기능
+
+- 이슈 상세 페이지에서 경로를 숫자로 시작하면서 숫자가 아닌 문자열이 섞인 경로(e.g. '/issues/1234asdf')로 데이터를 요청하게 되면, 앞에 숫자만 파싱하여 쿼리한 데이터를 응답값으로 줍니다. 이 경우에는 유저를 올바른 경로로 재이동시켜줍니다.
+
+![redirect user](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/482b323c-d1cc-4ed8-bb36-7858df4ce40b)
 
 ## 디렉토리 구조
 
