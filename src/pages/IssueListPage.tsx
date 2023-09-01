@@ -6,6 +6,7 @@ import { useIssueListContext } from '../store/IssueListContext'
 import ImageBanner from '../components/ImageBanner'
 import { advertisement } from '../constants/advertisement'
 import IssueListItem from '../components/IssueListItem'
+import Loading from '../components/Loading'
 
 function IssueListPage() {
   const { getIssueList } = useIssueListContext()
@@ -41,9 +42,9 @@ function IssueListPage() {
               )}
             </>
           ))}
-          {loading && <>loading</>}
         </Suspense>
       </section>
+      {loading && <Loading height="100px" width="100px" />}
       <Target ref={ref}></Target>
     </>
   )
