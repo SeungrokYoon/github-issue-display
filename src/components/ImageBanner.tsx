@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { StyledIssueItem } from '../pages/styles'
+import { StyledIssueItem } from './ErrorNotice/Error.styled'
 
 interface ImageBannerProps {
   alt: string

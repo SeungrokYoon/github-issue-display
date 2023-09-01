@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { StyledIssueItem, NumberTitleWrapper, Comments } from '../pages/styles'
+import { StyledIssueItem, NumberTitleWrapper, Comments } from './ErrorNotice/Error.styled'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import IssueIcon from './IssueIcon'
 import { useNavigate } from 'react-router-dom'

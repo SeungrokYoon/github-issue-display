@@ -7,10 +7,10 @@ import ImageBanner from '../components/ImageBanner'
 import { advertisement } from '../constants/advertisement'
 import IssueListItem from '../components/IssueListItem'
 import Loading from '../components/Loading'
+import AsyncErrorPage from './AsyncErrorPage'
 
 function IssueListPage() {
-  const { getIssueList } = useIssueListContext()
-  const { data, loading } = useIssueListContext()
+  const { getIssueList, data, loading, error } = useIssueListContext()
   const ref = useIntersect(
     async (entry, observer) => {
       observer.unobserve(entry.target)
@@ -20,6 +20,7 @@ function IssueListPage() {
   )
   const isAdPosition = (index: number) => (index + 1) % 4 === 0
 
+  if (error) return <AsyncErrorPage errorType="DATA_FETCH_FAIL" />
   return (
     <>
       <section>

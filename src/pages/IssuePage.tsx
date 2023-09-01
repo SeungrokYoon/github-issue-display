@@ -4,10 +4,14 @@ import ReactMarkdown from 'react-markdown'
 import { IssueContentResponseData, octokitApi } from '../api/issue'
 import remarkGfm from 'remark-gfm'
 import { styled } from 'styled-components'
-import { Comments, NumberTitleWrapper, StyledIssueItem } from './styles'
+import {
+  Comments,
+  NumberTitleWrapper,
+  StyledIssueItem,
+} from '../components/ErrorNotice/Error.styled'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import rehypeRaw from 'rehype-raw'
-import AsyncError from './AsyncErrorPage'
+import AsyncErrorPage from './AsyncErrorPage'
 import Loading from '../components/Loading'
 
 function IssuePage() {
@@ -42,7 +46,7 @@ function IssuePage() {
   }, [])
 
   if (isLoading) return <Loading height="100px" width="100px" />
-  if (isAsyncError || !data) return <AsyncError />
+  if (isAsyncError || !data) return <AsyncErrorPage errorType="DATA_FETCH_FAIL" />
   return (
     <>
       <article>

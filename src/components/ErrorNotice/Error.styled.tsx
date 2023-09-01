@@ -27,4 +27,36 @@ const Comments = styled.div`
   margin-left: 10%;
   white-space: nowrap;
 `
+
+export const StyledNotFound = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
+  height: 100vh;
+`
+
+export const StyledTitle = styled.span`
+  font-size: 4rem;
+`
+
+export const StyledSubTitle = styled.span`
+  font-size: 1.5rem;
+`
+
+export const StyledComment = styled.span`
+  font-size: 1rem;
+`
+
+export const StyledButton = styled.button`
+  margin: 10px;
+  padding: 5px 10px;
+  border: 0.5px solid black;
+  border-radius: 10px;
+  color: black;
+  cursor: pointer;
+`
+
 export { StyledIssueItem, NumberTitleWrapper, Comments }
