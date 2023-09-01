@@ -79,19 +79,24 @@ npm start
 📦src
  ┣ 📂api
  ┃ ┗ 📜issue.ts
+ ┣ 📂assets
+ ┃ ┗ 📜loading.gif
  ┣ 📂components
  ┃ ┣ 📜Header.tsx
  ┃ ┣ 📜ImageBanner.tsx
  ┃ ┣ 📜IssueIcon.tsx
- ┃ ┗ 📜IssueListItem.tsx
+ ┃ ┣ 📜IssueListItem.tsx
+ ┃ ┗ 📜Loading.tsx
  ┣ 📂constants
  ┃ ┗ 📜advertisement.ts
  ┣ 📂hooks
  ┃ ┣ 📜useFetchIssueList.ts
  ┃ ┗ 📜useIntersect.ts
  ┣ 📂pages
+ ┃ ┣ 📜AsyncErrorPage.tsx
  ┃ ┣ 📜IssueListPage.tsx
  ┃ ┣ 📜IssuePage.tsx
+ ┃ ┣ 📜NotFoundErrorPage.tsx
  ┃ ┣ 📜PageLayout.tsx
  ┃ ┣ 📜router.tsx
  ┃ ┗ 📜styles.tsx
