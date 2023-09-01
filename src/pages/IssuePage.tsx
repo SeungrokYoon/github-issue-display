@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm'
 import { styled } from 'styled-components'
 import { Comments, NumberTitleWrapper, StyledIssueItem } from './styles'
 import { dateStringToKoreanString } from '../utils/dateConverter'
+import rehypeRaw from 'rehype-raw'
 
 function IssuePage() {
   const { issueNumber } = useParams()
@@ -60,8 +61,29 @@ function IssuePage() {
           </NumberTitleWrapper>
           <Comments>코멘트: {data.comments}</Comments>
         </StyledIssueItem>
-        <section>issue contents</section>
-        <ReactMarkdown remarkPlugins={[remarkGfm]}>{data.body ? data.body : ''}</ReactMarkdown>
+        <MarkdownWrapper>
+          <ReactMarkdown
+            className="markdown"
+            components={{
+              img: ({ ...props }) => <img style={{ maxWidth: '100%' }} {...props} alt="" />,
+              pre: ({ ...props }) => (
+                <pre
+                  style={{
+                    maxWidth: '100%',
+                    padding: '8px',
+                    overflow: 'auto',
+                    border: '0.5px solid gray',
+                  }}
+                  {...props}
+                />
+              ),
+            }}
+            rehypePlugins={[rehypeRaw as any, remarkGfm]}
+          >
+            {data.body ? data.body : ''}
+          </ReactMarkdown>
+          \
+        </MarkdownWrapper>
       </article>
       {issueNumber}
     </>
@@ -73,4 +95,25 @@ export default IssuePage
 const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
+`
+
+const MarkdownWrapper = styled.div`
+  h2 {
+    margin: 3px 0px;
+    border-bottom: 1px solid ${({ theme }) => theme.border_default};
+  }
+  p {
+    font-weight: 400;
+    margin: 1rem 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  pre {
+    background-color: ${({ theme }) => theme.bgColor_canvas_code};
+    border-color: ${({ theme }) => theme.border_default};
+    border-radius: 1rem;
+  }
 `
