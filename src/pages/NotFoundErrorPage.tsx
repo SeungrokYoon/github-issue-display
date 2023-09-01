@@ -1,7 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import { styled } from 'styled-components'
 
-function NotFoundPage() {
+function NotFoundErrorPage() {
   const navigate = useNavigate()
 
   return (
@@ -51,4 +51,4 @@ const StyledButton = styled.button`
   cursor: pointer;
 `
 
-export default NotFoundPage
+export default NotFoundErrorPage

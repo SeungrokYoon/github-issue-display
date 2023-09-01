@@ -2,7 +2,7 @@ import PageLayout from './PageLayout'
 import { createBrowserRouter } from 'react-router-dom'
 import IssueListPage from './IssueListPage'
 import IssuePage from './IssuePage'
-import NotFoundPage from './NotFoundPage'
+import NotFoundErrorPage from './NotFoundErrorPage'
 
 export const router = createBrowserRouter([
   {
@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <NotFoundPage />,
+        element: <NotFoundErrorPage />,
       },
     ],
   },

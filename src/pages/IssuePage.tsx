@@ -7,7 +7,7 @@ import { styled } from 'styled-components'
 import { Comments, NumberTitleWrapper, StyledIssueItem } from './styles'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import rehypeRaw from 'rehype-raw'
-import AsyncError from '../components/AsyncError'
+import AsyncError from './AsyncErrorPage'
 
 function IssuePage() {
   const { issueNumber } = useParams()
@@ -39,8 +39,7 @@ function IssuePage() {
   }, [])
 
   if (isLoading) return <>Loading An Issue</>
-  if (isAsyncError) return <AsyncError />
-  if (!data) return <>data is null</>
+  if (isAsyncError || !data) return <AsyncError />
   return (
     <>
       <article>
