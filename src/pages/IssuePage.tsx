@@ -7,7 +7,8 @@ import { styled } from 'styled-components'
 import { Comments, NumberTitleWrapper, StyledIssueItem } from './styles'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import rehypeRaw from 'rehype-raw'
-import AsyncError from '../components/AsyncError'
+import AsyncError from './AsyncErrorPage'
+import Loading from '../components/Loading'
 
 function IssuePage() {
   const { issueNumber } = useParams()
@@ -26,7 +27,9 @@ function IssuePage() {
         issueNumber: parseInt(issueNumber),
       })
       setData(res.data)
-      navigate(`/issues/${res.data.number}`)
+      if (issueNumber.startsWith(res.data.number.toString())) {
+        navigate(`/issues/${res.data.number}`, { replace: true })
+      }
     } catch (e) {
       setIsAsyncError(true)
       console.error(e)
@@ -38,9 +41,8 @@ function IssuePage() {
     getIssueContent(issueNumber)
   }, [])
 
-  if (isLoading) return <>Loading An Issue</>
-  if (isAsyncError) return <AsyncError />
-  if (!data) return <>data is null</>
+  if (isLoading) return <Loading height="100px" width="100px" />
+  if (isAsyncError || !data) return <AsyncError />
   return (
     <>
       <article>

@@ -1,46 +1,105 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 인턴십 프론트엔드 - 2주차 과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 소개
 
-## Available Scripts
+[원티드 프리온보딩 인턴십 프론트엔드 2주차 과제](https://younuk.notion.site/Week-2-a28eb717312a434498ea431d2ff8fc17)의 요구사항을 구현한 프로젝트입니다!
+주제: **Facebook의 React - Github Issue 데이터 화면에 출력**
 
-In the project directory, you can run:
+## 개발 기간
 
-### `npm start`
+2023.08.29 ~2023.09.01
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## 프로젝트에 사용한 주요 라이브러리
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+<img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=TypeScript&logoColor=white"/> <img src="https://img.shields.io/badge/styled component-DB7093?style=flat-square&logo=styled-components&logoColor=white"/> <img alt="Octokit" src ="https://img.shields.io/badge/Octokit-white.svg?style=flat-square&logo=Octokit&logoColor=black"/> <img src="https://img.shields.io/badge/React Router-CA4245?style=flat-square&logo=React Router&logoColor=white"> <img src="https://img.shields.io/badge/ESLint-4B32C3?style=flat-square&logo=eslint">
 
-### `npm test`
+## 배포
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+[[클릭]배포된 프로젝트 확인하기](https://github-issue-display.vercel.app/)
 
-### `npm run build`
+## 로컬 실행
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 1. clone 및 패키지 설치
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+git clone https://github.com/SeungrokYoon/github-issue-display.git
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. .env 파일 생성 후 액세스 코드 삽입
 
-### `npm run eject`
+깃헙 액세스 토큰을 추가해야 Github API를 제한없이 사용할 수 있습니다!
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+엑세스 토큰 획득 경로: [Github profile settings](https://github.com/settings/profile) =>
+`Developer settings` =>
+`Personal access tokens` 으로 접근하여 토큰 생성 후, 복사하여 사용!
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+```
+REACT_APP_GITHUB_ACCESS_TOKEN = "${본인의 Github access_token}"
+```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+### 3. 실행하기
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+npm start
+```
 
-## Learn More
+## 페이지구성 및 주요 기능
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+각 페이지들은 공통 헤더를 `PageLayout`을 통해 공유합니다
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- `IssueListPage` (이슈 리스트가 광고와 함께 렌더링되는 페이지)
+
+  - 이슈 목록을 `Github API`와 `Octokit` 을 활용하여 open 상태의 이슈 중 코멘트가 많은 순으로 정렬
+  - 다섯 번째 셀마다 광고 이미지 출력광고
+  - 화면을 아래로 스크롤 할 시 이슈 목록 추가 로딩(인피니티 스크롤)[PR](https://github.com/SeungrokYoon/github-issue-display/pull/14)
+    ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/44c7003a-9411-4bdf-87d1-7d217f4f0e99)
+
+- `IssuePage` (이슈 상세 내용이 마크다운으로 렌더링되는 페이지)
+  - 마크다운으로 렌더링
+    ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/6ba0b3ba-2bb7-46e1-a9ef-27a904a4a460)
+- `NotFoundPage` (잘못된 경로로 라우팅을 요청했을 때 출력되틑 페이지)
+  ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/0b110536-4fdf-4cb5-8492-74e8c8649285)
+- `AsyncErrorPage` (특정 이슈 호출에 실패했을 때)
+  ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/b4854d16-b2a0-48c0-96c3-cf4250aa6f91)
+
+- 데이터 로드 시 로딩 스피너 출력
+  ![Sep-01-2023 16-28-06](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/39a04b36-03e9-49d0-874d-b68df1790c2f)
+
+## 디렉토리 구조
+
+```
+📦src
+ ┣ 📂api
+ ┃ ┗ 📜issue.ts
+ ┣ 📂components
+ ┃ ┣ 📜Header.tsx
+ ┃ ┣ 📜ImageBanner.tsx
+ ┃ ┣ 📜IssueIcon.tsx
+ ┃ ┗ 📜IssueListItem.tsx
+ ┣ 📂constants
+ ┃ ┗ 📜advertisement.ts
+ ┣ 📂hooks
+ ┃ ┣ 📜useFetchIssueList.ts
+ ┃ ┗ 📜useIntersect.ts
+ ┣ 📂pages
+ ┃ ┣ 📜IssueListPage.tsx
+ ┃ ┣ 📜IssuePage.tsx
+ ┃ ┣ 📜PageLayout.tsx
+ ┃ ┣ 📜router.tsx
+ ┃ ┗ 📜styles.tsx
+ ┣ 📂store
+ ┃ ┗ 📜IssueListContext.tsx
+ ┣ 📂styles
+ ┃ ┣ 📜DefaultTheme.ts
+ ┃ ┣ 📜GlobalStyle.tsx
+ ┃ ┗ 📜stled.d.ts
+ ┣ 📂utils
+ ┃ ┣ 📜axiosInstance.ts
+ ┃ ┣ 📜dateConverter.ts
+ ┃ ┗ 📜octokitInstance.ts
+ ┣ 📜index.tsx
+ ┣ 📜react-app-env.d.ts
+ ┣ 📜reportWebVitals.ts
+ ┗ 📜setupTests.ts
+```
