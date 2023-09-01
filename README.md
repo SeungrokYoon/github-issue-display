@@ -3,6 +3,7 @@
 ## 프로젝트 소개
 
 [원티드 프리온보딩 인턴십 프론트엔드 2주차 과제](https://younuk.notion.site/Week-2-a28eb717312a434498ea431d2ff8fc17)의 요구사항을 구현한 프로젝트입니다!
+
 주제: **Facebook의 React - Github Issue 데이터 화면에 출력**
 
 ## 개발 기간
@@ -58,20 +59,20 @@ npm start
 
 - `IssuePage` (이슈 상세 내용이 마크다운으로 렌더링되는 페이지)
   - 마크다운으로 렌더링
-    ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/6ba0b3ba-2bb7-46e1-a9ef-27a904a4a460)
+    ![스크린샷 2023-09-01 오후 9 45 13](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/161161a4-2784-44f2-bd77-6a89dae9aee8)
 - `NotFoundPage` (잘못된 경로로 라우팅을 요청했을 때 출력되틑 페이지)
   ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/0b110536-4fdf-4cb5-8492-74e8c8649285)
 - `AsyncErrorPage` (특정 이슈 호출에 실패했을 때)
   ![image](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/b4854d16-b2a0-48c0-96c3-cf4250aa6f91)
 
 - 데이터 로드 시 로딩 스피너 출력
-  ![Sep-01-2023 16-28-06](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/39a04b36-03e9-49d0-874d-b68df1790c2f)
+  ![afafaf](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/ea757e6b-4474-4130-bb20-aaa639c8c6e5)
 
 ## 추가 기능
 
 - 이슈 상세 페이지에서 경로를 숫자로 시작하면서 숫자가 아닌 문자열이 섞인 경로(e.g. '/issues/1234asdf')로 데이터를 요청하게 되면, 앞에 숫자만 파싱하여 쿼리한 데이터를 응답값으로 줍니다. 이 경우에는 유저를 올바른 경로로 재이동시켜줍니다.
 
-![redirect user](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/482b323c-d1cc-4ed8-bb36-7858df4ce40b)
+![redirect](https://github.com/SeungrokYoon/github-issue-display/assets/44149596/8a73d7de-185a-4bef-8cb6-a633f5c7e80f)
 
 ## 디렉토리 구조
 

@@ -19,7 +19,7 @@ export const router = createBrowserRouter([
       },
       {
         path: '*',
-        element: <NotFoundErrorPage />,
+        element: <NotFoundErrorPage errorType="NOT_FOUND" />,
       },
     ],
   },
