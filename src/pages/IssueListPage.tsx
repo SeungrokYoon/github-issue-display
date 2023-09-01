@@ -2,13 +2,10 @@ import { Suspense } from 'react'
 
 import styled from 'styled-components'
 import { useIntersect } from '../hooks/useIntersect'
-import { useNavigate } from 'react-router-dom'
 import { useIssueListContext } from '../store/IssueListContext'
-import { dateStringToKoreanString } from '../utils/dateConverter'
-import { NumberTitleWrapper, Comments, StyledIssueItem } from './styles'
 import ImageBanner from '../components/ImageBanner'
 import { advertisement } from '../constants/advertisement'
-import IssueIcon from '../components/IssueIcon'
+import IssueListItem from '../components/IssueListItem'
 
 function IssueListPage() {
   const { getIssueList } = useIssueListContext()
@@ -20,8 +17,6 @@ function IssueListPage() {
     },
     { root: null, rootMargin: '1px', threshold: 0.3 }
   )
-  const navigate = useNavigate()
-
   const isAdPosition = (index: number) => (index + 1) % 4 === 0
 
   return (
@@ -30,28 +25,13 @@ function IssueListPage() {
         <Suspense fallback={<div>Loading Issue List...</div>}>
           {data.map((v, index) => (
             <>
-              <StyledIssueItem key={v.number} onClick={() => navigate(`/issues/${v.number}`)}>
-                <LeftPart>
-                  <IconWrapper>
-                    <IssueIcon open={true} />
-                  </IconWrapper>
-                  <div>
-                    <NumberTitleWrapper>
-                      <span>#{v.number}</span>
-                      <span>
-                        <strong>{v.title}</strong>
-                      </span>
-                    </NumberTitleWrapper>
-                    <div>
-                      <span className="author">작성자: {v.user?.login}</span>
-                      <span>작성일: {dateStringToKoreanString(v.created_at)}</span>
-                    </div>
-                  </div>
-                </LeftPart>
-                <Comments>
-                  <span>코멘트: {v.comments}</span>
-                </Comments>
-              </StyledIssueItem>
+              <IssueListItem
+                comments={v.comments}
+                createdAt={v.created_at}
+                issueNumber={v.number}
+                title={v.title}
+                userId={v.user ? v.user.login : 'unknown user'}
+              />
               {isAdPosition(index) && (
                 <ImageBanner
                   alt={advertisement.banner.ALT}
@@ -73,12 +53,4 @@ export default IssueListPage
 
 const Target = styled.div`
   height: 1px;
-`
-
-const LeftPart = styled.div`
-  display: flex;
-  gap: 10px;
-`
-const IconWrapper = styled.div`
-  padding-top: 0.25rem;
 `
