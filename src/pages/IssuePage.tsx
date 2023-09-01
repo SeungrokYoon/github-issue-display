@@ -4,11 +4,7 @@ import ReactMarkdown from 'react-markdown'
 import { IssueContentResponseData, octokitApi } from '../api/issue'
 import remarkGfm from 'remark-gfm'
 import { styled } from 'styled-components'
-import {
-  Comments,
-  NumberTitleWrapper,
-  StyledIssueItem,
-} from '../components/ErrorNotice/Error.styled'
+import { Comments } from '../components/ErrorNotice/Error.styled'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import rehypeRaw from 'rehype-raw'
 import AsyncErrorPage from './AsyncErrorPage'
@@ -50,22 +46,24 @@ function IssuePage() {
   return (
     <>
       <article>
-        <StyledIssueItem>
-          <ProfileImage alt="profile_img" src={data.user?.avatar_url} />
-          <NumberTitleWrapper>
-            <div>
-              <span>#{data.number}</span>
-              <span>
-                <strong>{data.title}</strong>
-              </span>
-            </div>
-            <div>
-              <span className="author">작성자: {data.user?.login}</span>
-              <span>작성일: {dateStringToKoreanString(data.created_at)}</span>
-            </div>
-          </NumberTitleWrapper>
+        <StyledTitleArea>
+          <LeftPart>
+            <ProfileImage alt="profile_img" src={data.user?.avatar_url} />
+            <NumberTitleWrapper>
+              <div>
+                <span>#{data.number}</span>
+                <span>
+                  <strong>{data.title}</strong>
+                </span>
+              </div>
+              <div>
+                <span className="author">작성자: {data.user?.login}</span>
+                <span>작성일: {dateStringToKoreanString(data.created_at)}</span>
+              </div>
+            </NumberTitleWrapper>
+          </LeftPart>
           <Comments>코멘트: {data.comments}</Comments>
-        </StyledIssueItem>
+        </StyledTitleArea>
         <MarkdownWrapper>
           <ReactMarkdown
             className="markdown"
@@ -95,9 +93,36 @@ function IssuePage() {
 
 export default IssuePage
 
+const StyledTitleArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: ${({ theme }) => theme.bgColor_canvas_main};
+  border-bottom: 1px solid ${({ theme }) => theme.border_default};
+`
+
 const ProfileImage = styled.img`
   width: 50px;
   height: 50px;
+  margin-right: 20px;
+`
+
+const NumberTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  & .author {
+    margin-right: 20px;
+  }
+`
+
+const LeftPart = styled.div`
+  display: flex;
+  align-items: center;
 `
 
 const MarkdownWrapper = styled.div`
