@@ -2,6 +2,7 @@ import PageLayout from './PageLayout'
 import { createBrowserRouter } from 'react-router-dom'
 import IssueListPage from './IssueListPage'
 import IssuePage from './IssuePage'
+import NotFoundPage from './NotFoundPage'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: 'issues/:issueNumber',
         element: <IssuePage />,
+      },
+      {
+        path: '*',
+        element: <NotFoundPage />,
       },
     ],
   },

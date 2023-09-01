@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { IssueContentResponseData, octokitApi } from '../api/issue'
 import remarkGfm from 'remark-gfm'
@@ -7,9 +7,11 @@ import { styled } from 'styled-components'
 import { Comments, NumberTitleWrapper, StyledIssueItem } from './styles'
 import { dateStringToKoreanString } from '../utils/dateConverter'
 import rehypeRaw from 'rehype-raw'
+import AsyncError from '../components/AsyncError'
 
 function IssuePage() {
   const { issueNumber } = useParams()
+  const navigate = useNavigate()
   const [isLoading, setIsLoading] = useState(false)
   const [isAsyncError, setIsAsyncError] = useState(false)
   const [data, setData] = useState<IssueContentResponseData>()
@@ -23,10 +25,8 @@ function IssuePage() {
         repo: 'react',
         issueNumber: parseInt(issueNumber),
       })
-      if (!res.data.body) {
-        throw new Error('Empty markdown')
-      }
       setData(res.data)
+      navigate(`/issues/${res.data.number}`)
     } catch (e) {
       setIsAsyncError(true)
       console.error(e)
@@ -39,9 +39,8 @@ function IssuePage() {
   }, [])
 
   if (isLoading) return <>Loading An Issue</>
-  if (isAsyncError) return <>Error</>
+  if (isAsyncError) return <AsyncError />
   if (!data) return <>data is null</>
-
   return (
     <>
       <article>
@@ -82,10 +81,8 @@ function IssuePage() {
           >
             {data.body ? data.body : ''}
           </ReactMarkdown>
-          \
         </MarkdownWrapper>
       </article>
-      {issueNumber}
     </>
   )
 }
